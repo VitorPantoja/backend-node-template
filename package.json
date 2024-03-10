@@ -1,0 +1,43 @@
+{
+  "name": "@cms/backend",
+  "version": "1.0.0",
+  "description": "The package for the cms backend.",
+  "main": "./src/index",
+  "scripts": {
+    "build": "tsc --build",
+    "start": "node build/src/index.js",
+    "typescript": "ts-node-dev --quiet --transpile-only --exit-child --ignore-watch node_modules --",
+    "dev": "npm run typescript ./src/index"
+  },
+  "author": "Vitor Pantoja <vitortravassos3@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^8.4.1",
+    "@fastify/helmet": "^11.1.1",
+    "@fastify/rate-limit": "^8.0.3",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "celebrate": "^15.0.3",
+    "cors": "^2.8.5",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "express": "^4.18.3",
+    "express-useragent": "^1.0.15",
+    "fastify": "^4.24.3",
+    "http-terminator": "^3.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.3",
+    "prettier": "^3.2.5",
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express-useragent": "^1.0.5",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/morgan": "^1.9.9",
+    "@types/request-ip": "^0.0.41",
+    "ts-node-dev": "^2.0.0"
+  }
+}
