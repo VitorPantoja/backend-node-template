@@ -24,9 +24,14 @@ export class User {
   @UpdateDateColumn({ type: 'timestamp' })
   updatedAt!: Date;
 
-  constructor(name: string, age: number, email: string) {
+  @Column({ length: 255, nullable: true })
+  hashedPassword?: string;
+
+  constructor(name: string, age: number, email: string, password?: string, hashedPassword?: string) {
     this.name = name;
     this.age = age;
     this.email = email;
+    this.password = password;
+    this.hashedPassword = hashedPassword;
   }
 }

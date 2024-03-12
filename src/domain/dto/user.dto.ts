@@ -5,11 +5,14 @@ export class UserDto {
   password?: string;
   name!: string;
   age!: number;
+  hashedPassword?: string;
 
-  constructor(email: string, name: string, age: number) {
+  constructor(email: string, name: string, age: number, password?: string, hashedPassword?: string) {
     this.email = email;
     this.name = name;
     this.age = age;
+    this.password = password;
+    this.hashedPassword = hashedPassword;
   }
 
   static fromEntity(user: User): UserDto {
@@ -19,6 +22,6 @@ export class UserDto {
   }
 
   toEntity(): User {
-    return new User(this.name, this.age, this.email);
+    return new User(this.name, this.age, this.email, this.password, this.hashedPassword);
   }
 }

@@ -1,4 +1,4 @@
-import { type Repository } from 'typeorm';
+import type { Repository } from 'typeorm';
 import type { DataSourceService } from '../../infrastructure/datasource';
 import { User } from '../entities/user';
 
@@ -9,7 +9,6 @@ export class UserRepository {
   }
 
   async create(user: User) {
-    console.log(user);
     const userToCreate = this.userRepository.create(user);
     return await this.userRepository.save(userToCreate);
   }
@@ -20,6 +19,11 @@ export class UserRepository {
 
   async findById(id: number) {
     return await this.userRepository.findOne({ where: { id } });
+  }
+
+  async delete(id: number) {
+    const result = await this.userRepository.delete({ id });
+    return result;
   }
 
   async findAll() {

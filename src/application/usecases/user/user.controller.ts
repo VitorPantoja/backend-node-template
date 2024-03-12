@@ -17,4 +17,10 @@ export class UserController {
     const users = await this.userService.findAll();
     return res.status(200).send({ users, success: true });
   }
+
+  async delete(req: Request<any, any, any, any>, res: Response, _next: NextFunction) {
+    const { params } = req;
+    const result = await this.userService.delete(params.id);
+    return res.status(200).send({ id: params.id, result, success: true });
+  }
 }
