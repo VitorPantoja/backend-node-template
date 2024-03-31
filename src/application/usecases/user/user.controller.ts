@@ -1,7 +1,9 @@
-import type { NextFunction, Request, Response } from 'express';
-import { LogClass } from '../../../infrastructure/server/logger/log-class.decorator';
-import type { UserService } from './user.service';
-import type { UserDto } from '../../../domain/dto/user.dto';
+import type { NextFunction, Request, Response } from "express";
+
+import type { UserDto } from "../../../domain/dto/user.dto";
+import { LogClass } from "../../../infrastructure/server/logger/log-class.decorator";
+
+import type { UserService } from "./user.service";
 
 @LogClass
 export class UserController {

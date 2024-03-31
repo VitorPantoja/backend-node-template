@@ -1,4 +1,4 @@
-import { Utils } from '@cms/shared';
+import { Utils } from "../../../utils";
 
 let count: any[] | null = [];
 let time = process.hrtime();
@@ -57,8 +57,8 @@ export function LogClass<T extends ClassArgsConstructor>(target: T): T {
       const sec = `(${ms}ms)`;
 
       Utils.TerminalLogger.logClass(`Class ${name}: ${sec}`, {
-        level: 'INFO',
-        scope: 'CLASS'
+        level: "INFO",
+        scope: "CLASS"
       });
     }
 
@@ -72,6 +72,6 @@ export function LogClass<T extends ClassArgsConstructor>(target: T): T {
 
 export function resetCount() {
   time = process.hrtime(time);
-  Utils.TerminalLogger.log(`LogClass ${count?.length || ''} ${time?.[0]}.${time?.[1]}s`);
+  Utils.TerminalLogger.log(`LogClass ${count?.length || ""} ${time?.[0]}.${time?.[1]}s`);
   count = null;
 }

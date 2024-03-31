@@ -13,6 +13,7 @@ type Env = {
   DATABASE_HOST: string;
   DATABASE_PORT: number;
   DATABASE_NAME: string;
+  SALTS_ROUNDS: number;
 };
 export const env: Env = {
   PORT: process?.env?.PORT ? +process?.env?.PORT : 3333,
@@ -25,5 +26,6 @@ export const env: Env = {
   DATABASE_HOST: process.env?.DATABASE_HOST ?? 'localhost',
   DATABASE_PORT: process?.env?.DATABASE_PORT ? +process?.env?.DATABASE_PORT : 5432,
   DATABASE_NAME: process.env?.DATABASE_NAME ?? 'cms',
-  DATABASE_URL: process.env?.DATABASE_URL ?? ''
+  DATABASE_URL: process.env?.DATABASE_URL ?? '',
+  SALTS_ROUNDS: process?.env?.SALTS_ROUNDS ? +process?.env?.SALTS_ROUNDS : 10,
 };

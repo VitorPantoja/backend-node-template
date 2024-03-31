@@ -14,14 +14,23 @@
   "plugins": [
     "@typescript-eslint/eslint-plugin",
     "import-helpers",
-    "prettier",
+    "prettier"
   ],
   "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
     "plugin:import/errors",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
     "prettier/prettier": "error",
+    "import/namespace": [
+      "error",
+      {
+        "allowComputed": true,
+        "allowUnambiguous": true
+      }
+    ],
     "no-console": "warn",
     "camelcase": "warn",
     "@typescript-eslint/interface-name-prefix": "off",
@@ -31,13 +40,6 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-this-alias": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        "varsIgnorePattern": "^_",
-        "argsIgnorePattern": "^_"
-      }
-    ],
     "import/no-unresolved": "error",
     "import-helpers/order-imports": [
       "warn",
@@ -89,7 +91,7 @@
     },
     "import/resolver": {
       "typescript": {
-        "alwaysTryTypes": true
+        "typescript": {}
       }
     }
   }

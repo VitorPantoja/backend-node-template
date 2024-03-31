@@ -1,4 +1,4 @@
-import { User } from '../entities/user';
+import { User } from "../entities/user";
 
 export class UserDto {
   email!: string;

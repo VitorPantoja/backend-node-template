@@ -1,6 +1,6 @@
-import { Utils } from '@cms/shared';
-import type { DataSourceService } from '../../infrastructure/datasource';
-import type { HttpServer } from '../../infrastructure/server/middlewares/server';
+import type { DataSourceService } from "../../infrastructure/datasource";
+import type { HttpServer } from "../../infrastructure/server/middlewares/server";
+import { Utils } from "../../utils";
 
 export async function startServer(httpServer: HttpServer, dataSource: DataSourceService) {
   const connection = await dataSource.initialize();
@@ -13,6 +13,6 @@ export async function startServer(httpServer: HttpServer, dataSource: DataSource
 
     return result;
   }
-  Utils.TerminalLogger.logError('Server failed to start', { level: 'ERROR', scope: 'DATABASE' });
+  Utils.TerminalLogger.logError("Server failed to start", { level: "ERROR", scope: "DATABASE" });
   return null;
 }

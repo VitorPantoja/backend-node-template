@@ -1,0 +1,5 @@
+*.config.js
+node_modules
+dist
+scripts/release.js
+vitest.config.ts

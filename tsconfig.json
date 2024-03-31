@@ -1,19 +1,40 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "declaration": true,
-    "strict": true,
-    "allowJs": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "rootDir": "./src",
-    "outDir": "./build",
-    "composite": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-  }
+    "compilerOptions": {
+        "module": "commonjs",
+        "removeComments": true,
+        "target": "ESNext",
+        "outDir": "dist",
+        "rootDir": "src",
+        "strict": true,
+        "declaration": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        // "baseUrl": ".",
+        // "paths": {
+        //     "@domain/*": [
+        //         "./src/domain/*"
+        //     ],
+        //     "@infrastructure/*": [
+        //         "./src/infrastructure/*"
+        //     ],
+        //     "@application/*": [
+        //         "./src/application/*"
+        //     ],
+        //     "@utils/*": [
+        //         "./src/utils/*"
+        //     ]
+        // },
+        "resolveJsonModule": true,
+        "noImplicitAny": false,
+        "composite": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "exclude": [
+        "node_modules",
+        "mime"
+    ]
 }
