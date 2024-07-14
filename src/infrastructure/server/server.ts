@@ -6,8 +6,6 @@ import http from 'http';
 import { createHttpTerminator, type HttpTerminator } from 'http-terminator';
 import morgan from 'morgan';
 
-import 'reflect-metadata';
-
 import { LogClass } from './logger/log-class.decorator';
 import { createErrorMiddleware } from './middlewares/error.middleware';
 
@@ -20,7 +18,6 @@ export interface IAppOptions {
   env: NodeEnv;
 }
 
-// @ts-ignore
 @LogClass
 export class HttpServer {
   private readonly port: number;
