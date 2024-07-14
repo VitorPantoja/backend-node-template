@@ -19,8 +19,6 @@ export function createErrorMiddleware() {
     res: Response,
     _next: NextFunction
   ) => {
-    // const personId = req?.auth?.personId || 0;
-    // const groupId = req?.auth?.groupId || 0;
     const url = `${req?.baseUrl}${req?.url}`;
 
     const result: ApiResponseErrorDto = {
