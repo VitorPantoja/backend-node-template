@@ -1,9 +1,10 @@
 {
   "printWidth": 150,
-  "singleQuote": false,
+  "singleQuote": true,
   "trailingComma": "none",
   "tabWidth": 2,
   "semi": true,
   "arrowParens": "avoid",
-  "endOfLine": "auto"
+  "endOfLine": "auto",
+  "ignore": ["**/__tests__/**", "**/*.test.ts", "**/*.spec.ts"]
 }

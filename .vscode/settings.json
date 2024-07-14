@@ -1,0 +1,12 @@
+{
+  "editor.rulers": [150],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always"
+  },
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cSpell.words": []
+}

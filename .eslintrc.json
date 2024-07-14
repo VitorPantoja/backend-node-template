@@ -11,26 +11,11 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint/eslint-plugin",
-    "import-helpers",
-    "prettier"
-  ],
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:import/errors",
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "plugins": ["@typescript-eslint/eslint-plugin", "import-helpers", "prettier", "perfectionist"],
+  "extends": ["plugin:import/errors", "plugin:@typescript-eslint/recommended"],
+  "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
   "rules": {
     "prettier/prettier": "error",
-    "import/namespace": [
-      "error",
-      {
-        "allowComputed": true,
-        "allowUnambiguous": true
-      }
-    ],
     "no-console": "warn",
     "camelcase": "warn",
     "@typescript-eslint/interface-name-prefix": "off",
@@ -40,6 +25,13 @@
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/no-this-alias": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "varsIgnorePattern": "^_",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "import/no-unresolved": "error",
     "import-helpers/order-imports": [
       "warn",
@@ -48,7 +40,8 @@
         "alphabetize": {
           "order": "asc",
           "ignoreCase": true
-        }
+        },
+        "groups": ["module", "/#/config/", "/^#/services/", "/^#/useCases/", "/^#/", "/^src/", ["sibling", "index"]]
       }
     ],
     "@typescript-eslint/consistent-type-imports": [
@@ -59,20 +52,10 @@
         "fixStyle": "inline-type-imports"
       }
     ],
-    "consistent-return": [
-      "error",
-      {
-        "treatUndefinedAsUnspecified": false
-      }
-    ],
-    "no-restricted-exports": [
-      "error",
-      {
-        "restrictDefaultExports": {
-          "direct": true
-        }
-      }
-    ],
+    "consistent-return": ["error", { "treatUndefinedAsUnspecified": false }],
+    "no-restricted-exports": ["error", { "restrictDefaultExports": { "direct": true } }],
+    "perfectionist/sort-objects": ["warn", { "type": "alphabetical", "order": "asc" }],
+    "perfectionist/sort-exports": ["warn", { "type": "alphabetical", "order": "asc" }],
     "sort-imports": [
       "error",
       {
@@ -85,13 +68,11 @@
   },
   "settings": {
     "import/parsers": {
-      "@typescript-eslint/parser": [
-        ".ts"
-      ]
+      "@typescript-eslint/parser": [".ts"]
     },
     "import/resolver": {
       "typescript": {
-        "typescript": {}
+        "alwaysTryTypes": true
       }
     }
   }
