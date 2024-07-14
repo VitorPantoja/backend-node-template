@@ -13,7 +13,7 @@
   },
   "plugins": ["@typescript-eslint/eslint-plugin", "import-helpers", "prettier", "perfectionist"],
   "extends": ["plugin:import/errors", "plugin:@typescript-eslint/recommended"],
-  "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
+  // "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
   "rules": {
     "prettier/prettier": "error",
     "no-console": "warn",
