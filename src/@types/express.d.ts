@@ -1,9 +1,10 @@
-import type { PayloadTokenDto } from '../domain/dto/jwt.dto';
+import type { PayloadTokenDto } from "../application/usecases/auth/auth.dto";
+
 
 declare global {
   namespace Express {
     export interface Request {
-      token?: PayloadTokenDto; // Defina o tipo de 'decoded' conforme necessário
+      auth?: PayloadTokenDto; // Defina o tipo de 'decoded' conforme necessário
     }
   }
 }

@@ -1,22 +1,22 @@
 const COLORS = {
   black: '\x1b[30m',
-  red: '\x1b[31m',
-  green: '\x1b[32m',
-  yellow: '\x1b[33m',
-  purple: '\x1b[35m',
   cyan: '\x1b[36m',
-  white: '\x1b[37m',
-  reset: '\x1b[0m',
+  green: '\x1b[32m',
   none: '',
+  purple: '\x1b[35m',
+  red: '\x1b[31m',
+  reset: '\x1b[0m',
+  white: '\x1b[37m',
+  yellow: '\x1b[33m'
 } as const;
 
 const LEVEL_LOGGER_COLOR: Record<LoggerLevel, string> = {
+  DEBUG: COLORS['purple'],
   DEFAULT: COLORS['reset'],
   ERROR: COLORS['red'],
   INFO: COLORS['cyan'],
   SUCCESS: COLORS['green'],
-  WARN: COLORS['yellow'],
-  DEBUG: COLORS['purple'],
+  WARN: COLORS['yellow']
 };
 
 export type LoggerLevel = 'INFO' | 'WARN' | 'SUCCESS' | 'ERROR' | 'DEBUG' | 'DEFAULT';
@@ -29,7 +29,7 @@ export type LoggerOption = {
 export class TerminalLogger {
   static DEFAULT_LOGGER_OPTIONS: LoggerOption = {
     level: 'INFO',
-    scope: 'GLOBAL',
+    scope: 'GLOBAL'
   };
 
   static log(message: string, options?: LoggerOption, ...meta: string[]): void {

@@ -25,5 +25,5 @@ export enum ErrMsg {
   disabledUser = 'disabled_user',
   unauthorized = 'unauthorized',
   invalidCredentials = 'invalid_credentials',
-  invalidData = 'invalid_data',
+  invalidData = 'invalid_data'
 }

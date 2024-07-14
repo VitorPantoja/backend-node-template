@@ -7,7 +7,7 @@ import { UserRoute } from "./user/user.route";
 
 const IndexRoute = Router();
 
-IndexRoute.use(authMiddleware2);
+// IndexRoute.use(authMiddleware2);
 IndexRoute.use("/health", HealthRoute);
 IndexRoute.use("/user", UserRoute);
 

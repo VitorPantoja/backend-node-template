@@ -4,8 +4,8 @@ import { TerminalLogger } from './terminal-logger';
 
 const Utils = {
   Environment,
-  TerminalLogger,
   ExecutionTime,
+  TerminalLogger
 };
 
 export { Utils };

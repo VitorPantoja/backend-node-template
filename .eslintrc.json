@@ -13,7 +13,6 @@
   },
   "plugins": ["@typescript-eslint/eslint-plugin", "import-helpers", "prettier", "perfectionist"],
   "extends": ["plugin:import/errors", "plugin:@typescript-eslint/recommended"],
-  // "import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}],
   "rules": {
     "prettier/prettier": "error",
     "no-console": "warn",
@@ -41,7 +40,7 @@
           "order": "asc",
           "ignoreCase": true
         },
-        "groups": ["module", "/#/config/", "/^#/services/", "/^#/useCases/", "/^#/", "/^src/", ["sibling", "index"]]
+        "groups": ["module", "/#/infrastructure/", "/#/utils/", "/^#/application/", "/^#/domain/", "/^#/", "/^src/", ["sibling", "index"]]
       }
     ],
     "@typescript-eslint/consistent-type-imports": [

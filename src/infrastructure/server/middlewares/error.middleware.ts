@@ -1,12 +1,13 @@
-import { type CelebrateError, isCelebrateError } from "celebrate";
-import type { NextFunction, Request, Response } from "express";
-import { IncomingMessage } from "http";
-import { JsonWebTokenError, NotBeforeError, TokenExpiredError } from "jsonwebtoken";
+import { type CelebrateError, isCelebrateError } from 'celebrate';
+import type { NextFunction, Request, Response } from 'express';
+import { IncomingMessage } from 'http';
+import { JsonWebTokenError, NotBeforeError, TokenExpiredError } from 'jsonwebtoken';
 
-import type { ApiResponseErrorDto } from "./api-response";
-import { isBodyParserError } from "./error.helper";
-import { ErrMsg, HttpException } from "./http-exception";
-import { Utils } from "../../../utils";
+import type { ApiResponseErrorDto } from './api-response';
+import { isBodyParserError } from './error.helper';
+import { ErrMsg, HttpException } from './http-exception';
+
+import { Utils } from '../../../utils';
 
 type MiddleErrors = HttpException | CelebrateError | Error | JsonWebTokenError | NotBeforeError | TokenExpiredError;
 
@@ -22,9 +23,9 @@ export function createErrorMiddleware() {
     const url = `${req?.baseUrl}${req?.url}`;
 
     const result: ApiResponseErrorDto = {
-      success: false,
+      message: error?.message || 'Something went wrong ApiResponseErrorDto',
       status: 500,
-      message: error?.message || "Something went wrong ApiResponseErrorDto"
+      success: false
     };
 
     const responseEnd = (r: ApiResponseErrorDto) => {
@@ -51,15 +52,15 @@ export function createErrorMiddleware() {
       result.status = 400;
       result.message = ErrMsg.badRequestUri;
       Utils.TerminalLogger.logWarning(`${result?.status} url: ${url} ${result?.message}`, {
-        level: "WARN",
-        scope: "URI"
+        level: 'WARN',
+        scope: 'URI'
       });
       return responseEnd(result);
     }
 
     if (error instanceof HttpException) {
       result.status = error?.status || 500;
-      result.message = error.message || "Something went wrong HttpException";
+      result.message = error.message || 'Something went wrong HttpException';
     }
 
     if (error instanceof NotBeforeError || error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
@@ -78,14 +79,14 @@ export function createErrorMiddleware() {
 
       result.status = error?.statusCode || r.statusCode || 500;
 
-      result.message = r?.statusMessage ?? "Internal Server Error";
+      result.message = r?.statusMessage ?? 'Internal Server Error';
     }
 
     if (result.status && [401, 403].includes(result.status)) {
-      Utils.TerminalLogger.logWarning(`${result?.status}: ${result?.message}`, { level: "WARN", scope: "CREDENTIALS" });
+      Utils.TerminalLogger.logWarning(`${result?.status}: ${result?.message}`, { level: 'WARN', scope: 'CREDENTIALS' });
       return responseEnd(result);
     } else if (result.status && [400].includes(result?.status)) {
-      Utils.TerminalLogger.logWarning(`${result?.status}: ${result?.message}`, { level: "WARN", scope: "CREDENTIALS" });
+      Utils.TerminalLogger.logWarning(`${result?.status}: ${result?.message}`, { level: 'WARN', scope: 'CREDENTIALS' });
       return responseEnd(result);
     }
 
