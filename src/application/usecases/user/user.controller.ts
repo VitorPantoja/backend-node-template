@@ -1,11 +1,11 @@
-import type { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from 'express';
 
-import type { UserDto } from "../../../domain/dto/user.dto";
-import { LogClass } from "../../../infrastructure/server/logger/log-class.decorator";
+import type { UserService } from './user.service';
 
-import type { UserService } from "./user.service";
+import type { UserDto } from '../../../domain/dto/user.dto';
+import { Catch } from '../../../infrastructure/api/rest/utils/catch-controller.decorator';
 
-@LogClass
+@Catch()
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -17,7 +17,7 @@ export class UserController {
 
   async findAll(req: Request, res: Response, _next: NextFunction) {
     const users = await this.userService.findAll();
-    return res.status(200).send({ users, success: true });
+    return res.status(200).send({ success: true, users });
   }
 
   async delete(req: Request<any, any, any, any>, res: Response, _next: NextFunction) {

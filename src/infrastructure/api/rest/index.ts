@@ -1,7 +1,7 @@
 import { IndexRoute } from '../../../application/usecases/index.route';
 import { env } from '../../config/environment';
-import { HttpServer } from '../../server/middlewares/server';
+import { HttpServer } from '../../server/server';
 
-const server = new HttpServer({ port: env.PORT, env: 'development' }, IndexRoute);
+const server = new HttpServer({ env: 'development', port: env.PORT }, IndexRoute);
 
 export { server };

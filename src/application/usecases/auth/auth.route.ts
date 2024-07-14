@@ -19,5 +19,6 @@ const controller = new AuthController(authService);
 // rotas publicas
 // AuthRoute.post('/', postAuthSchema, authRateLimiter(), (...n) => controller.authorize(...n)); // VOU IMPLEMENTAR TUDO DAQUI PRA BAIXO
 AuthRoute.post('/', (...n) => controller.authorize(...n)); // VOU IMPLEMENTAR TUDO DAQUI PRA BAIXO
+AuthRoute.post('/test', (...n) => controller.testAuthorize(...n)); // VOU IMPLEMENTAR TUDO DAQUI PRA BAIXO
 
 export { AuthRoute, authService };

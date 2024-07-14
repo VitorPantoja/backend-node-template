@@ -5,9 +5,10 @@ import { JsonWebTokenError, NotBeforeError, TokenExpiredError } from 'jsonwebtok
 
 import type { ApiResponseErrorDto } from './api-response';
 import { isBodyParserError } from './error.helper';
-import { ErrMsg, HttpException } from './http-exception';
+import { ErrMsg  } from './http-exception';
 
 import { Utils } from '../../../utils';
+import { HttpException } from '../../api/rest/utils/http-exceptions';
 
 type MiddleErrors = HttpException | CelebrateError | Error | JsonWebTokenError | NotBeforeError | TokenExpiredError;
 
@@ -29,6 +30,8 @@ export function createErrorMiddleware() {
     };
 
     const responseEnd = (r: ApiResponseErrorDto) => {
+      console.log('opaaaaa');
+      console.log('errorMiddleware', { r });
       return res
         ?.status(r?.status || 500)
         ?.send(r)
@@ -65,6 +68,7 @@ export function createErrorMiddleware() {
 
     if (error instanceof NotBeforeError || error instanceof JsonWebTokenError || error instanceof TokenExpiredError) {
       result.status = 401;
+      console.log('error', error);
       result.message = error.message || ErrMsg.invalidToken;
     }
 

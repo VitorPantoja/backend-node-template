@@ -20,8 +20,6 @@ export interface IJwtConfig {
   appVersion: string;
 }
 
-export type { PayloadTokenDto };
-
 @LogClass
 export class JwtService {
   public readonly prefix: string;
@@ -66,6 +64,15 @@ export class JwtService {
     } catch {
       return null;
     }
+  }
+
+  async testToken() {
+    const payload = {
+      name: "Jimmy",
+      scopes: "customer:read"
+    };
+    const result = sign(payload, 'minha chave');
+    return result;
   }
 
   createMiddleware(prefix?: string) {

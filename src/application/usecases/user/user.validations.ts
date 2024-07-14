@@ -1,13 +1,11 @@
-import { celebrate, Joi, Segments } from "celebrate";
-
-import { z } from "zod";
+import { celebrate, Joi, Segments } from 'celebrate';
 
 const createUserSchema = celebrate({
   [Segments.BODY]: {
-    name: Joi.string().required(),
+    age: Joi.number().optional(),
     email: Joi.string().email().required(),
-    password: Joi.string().required(),
-    age: Joi.number().optional()
+    name: Joi.string().required(),
+    password: Joi.string().required()
   }
 });
 
@@ -17,6 +15,6 @@ const deleteUserSchema = celebrate({
   }
 });
 
-const zodCreateUserSchema = "";
+const zodCreateUserSchema = '';
 
 export { createUserSchema, zodCreateUserSchema, deleteUserSchema };

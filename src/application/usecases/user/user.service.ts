@@ -1,4 +1,6 @@
-import { generateHashPassword, hashPassword } from './user.helper';
+import { v4 as uuidV4 } from 'uuid';
+
+import { generateHashPassword, generateHashPassword2, hashPassword } from './user.helper';
 
 import { UserDto } from '../../../domain/dto/user.dto';
 import { nonNull } from '../../../domain/helper';
@@ -10,8 +12,10 @@ export class UserService {
   async create(user: UserDto) {
     const data = new UserDto(user.email, user.name, user.age, user?.password);
     if (nonNull(user.password)) {
-      const hash = await generateHashPassword(user.password);
-      const password = hashPassword(hash);
+      const hash = await generateHashPassword2(user.password);
+      const salt = uuidV4();
+      const password = hashPassword(hash, salt);
+      data.salt = salt;
       data.password = password;
       data.hashedPassword = hash;
     }

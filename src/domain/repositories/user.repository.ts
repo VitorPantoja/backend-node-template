@@ -1,4 +1,4 @@
-import type { Repository } from 'typeorm';
+import type { DeepPartial, Repository } from 'typeorm';
 
 import type { DataSourceService } from '../../infrastructure/datasource';
 import { User } from '../entities/user';
@@ -33,8 +33,8 @@ export class UserRepository {
     return result;
   }
 
-  async update(id: number, user: User) {
-    return await this.userRepository.update({ id }, user);
+  async update(id: number, user: DeepPartial<User>) {
+    return await this.userRepository.update({ id }, { ...user });
   }
 
   async store(id: number, user: User) {

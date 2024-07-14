@@ -1,19 +1,19 @@
-import cors from "cors";
-import express, { type Express, type Router } from "express";
-import useragent from "express-useragent";
-import helmet from "helmet";
-import http from "http";
-import { createHttpTerminator, type HttpTerminator } from "http-terminator";
-import morgan from "morgan";
+import cors from 'cors';
+import express, { type Express, type Router } from 'express';
+import useragent from 'express-useragent';
+import helmet from 'helmet';
+import http from 'http';
+import { createHttpTerminator, type HttpTerminator } from 'http-terminator';
+import morgan from 'morgan';
 
-import "reflect-metadata";
+import 'reflect-metadata';
 
-import { LogClass } from "../logger/log-class.decorator";
+import { LogClass } from './logger/log-class.decorator';
+import { createErrorMiddleware } from './middlewares/error.middleware';
 
-import { createErrorMiddleware } from "./error.middleware";
-import { Utils } from "../../../utils";
+import { Utils } from '../../utils';
 
-type NodeEnv = "development" | "production" | "testing";
+type NodeEnv = 'development' | 'production' | 'testing';
 
 export interface IAppOptions {
   port: number;
@@ -44,17 +44,17 @@ export class HttpServer {
   }
 
   private middlewares() {
-    this.express.set("trust proxy", 1);
+    this.express.set('trust proxy', 1);
     this.express.use(helmet({ crossOriginEmbedderPolicy: false }));
-    this.express.use(cors({ origin: "*" }));
+    this.express.use(cors({ origin: '*' }));
     this.express.use(useragent.express());
-    this.express.use(express.urlencoded({ extended: true, limit: "50mb" }));
-    this.express.use(express.json({ limit: "10mb" }));
-    this.express.use(morgan("dev"));
+    this.express.use(express.urlencoded({ extended: true, limit: '50mb' }));
+    this.express.use(express.json({ limit: '10mb' }));
+    this.express.use(morgan('dev'));
   }
 
   private routes() {
-    this.express.use("/api", this.router);
+    this.express.use('/api', this.router);
     this.express.use(createErrorMiddleware());
   }
 
@@ -75,12 +75,12 @@ export class HttpServer {
       if (!this.started) this.start();
       return this.server.listen(this.port, () => {
         Utils.TerminalLogger.log(`STARTED SERVER development=${this.env} PORT=${this.port}`, {
-          level: "INFO",
-          scope: "MAIN"
+          level: 'INFO',
+          scope: 'MAIN'
         });
       });
     } catch {
-      Utils.TerminalLogger.log(`Server ERROR`, { level: "ERROR", scope: "MAIN" });
+      Utils.TerminalLogger.log(`Server ERROR`, { level: 'ERROR', scope: 'MAIN' });
       return undefined;
     }
   }

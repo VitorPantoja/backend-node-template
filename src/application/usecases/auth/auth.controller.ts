@@ -17,4 +17,9 @@ export class AuthController {
 
     return res.status(200).send({ expiration, groupId: role, parentId, success: !!token, token, user }).end();
   }
+
+  async testAuthorize(req: Request, res: Response, _next: NextFunction) {
+    const token = await this.authService.testSignin();
+    return res.status(200).send({ success: true, token }).end();
+  }
 }

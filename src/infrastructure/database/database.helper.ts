@@ -1,15 +1,15 @@
-import type { DataSourceOptions } from 'typeorm';
-
-import { env } from '../config/environment';
+import type { ConnectionOptions, DataSourceOptions } from 'typeorm';
 
 import { entities } from './database';
 
-const options: DataSourceOptions = {
-  synchronize: true,
+import { env } from '../config/environment';
+
+const options: DataSourceOptions & ConnectionOptions = {
   entities,
-  url: env.DATABASE_URL,
   logging: env.LOGGING_DB,
+  synchronize: true,
   type: 'postgres',
+  url: env.DATABASE_URL
 };
 
 export { options };
