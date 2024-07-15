@@ -12,6 +12,7 @@ const IndexRoute = Router();
 IndexRoute.use('/auth', AuthRoute);
 IndexRoute.use('/health', HealthRoute);
 IndexRoute.use('/user', UserRoute);
+// @ts-ignore
 IndexRoute.use(authMiddleware);
 IndexRoute.get('/teste', (_req, res) => res.status(200).send({ message: 'Hello World' }).end());
 
