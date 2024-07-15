@@ -5,7 +5,7 @@ import { JsonWebTokenError, NotBeforeError, TokenExpiredError } from 'jsonwebtok
 
 import type { ApiResponseErrorDto } from './api-response';
 import { isBodyParserError } from './error.helper';
-import { ErrMsg  } from './http-exception';
+import { ErrMsg } from './http-exception';
 
 import { Utils } from '../../../utils';
 import { HttpException } from '../../api/rest/utils/http-exceptions';
@@ -28,8 +28,6 @@ export function createErrorMiddleware() {
     };
 
     const responseEnd = (r: ApiResponseErrorDto) => {
-      console.log('opaaaaa');
-      console.log('errorMiddleware', { r });
       return res
         ?.status(r?.status || 500)
         ?.send(r)
