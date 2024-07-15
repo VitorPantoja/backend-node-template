@@ -8,7 +8,7 @@ import type { User } from '../../../domain/entities/user';
 import type { UserRepository } from '../../../domain/repositories/user.repository';
 import { NotFoundError, UnauthorizedError } from '../../../infrastructure/api/rest/utils/http-exceptions';
 import { LogClass } from '../../../infrastructure/server/logger/log-class.decorator';
-import { ErrMsg, HttpException } from '../../../infrastructure/server/middlewares/http-exception';
+import { ErrMsg } from '../../../infrastructure/server/middlewares/http-exception';
 import type { JwtService } from '../../services/JwtService';
 import { generateHashPassword2, hashPassword } from '../user/user.helper';
 
@@ -41,10 +41,8 @@ export class AuthSevice {
 
     // tenta invalidar senha
     const invalid = await this.invalidatePassword(person, password);
-    console.log('invalid', invalid);
     if (invalid) {
-      console.log('deu ruim');
-      throw new HttpException(401,ErrMsg.invalidCredentials);
+      throw new UnauthorizedError(ErrMsg.invalidCredentials);
     }
 
     const result = await this.login({ locale: 'pt-br', parentId: 0, personaId, userId: person.id });

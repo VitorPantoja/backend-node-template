@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
-import { authMiddleware } from './auth/auth.middleware';
+import { authMiddleware } from './auth.middleware';
+import { createAuthMiddleware } from './auth/auth.middleware';
 import { AuthRoute } from './auth/auth.route';
 import { HealthRoute } from './health/health.route';
 import { UserRoute } from './user/user.route';
@@ -8,9 +9,10 @@ import { UserRoute } from './user/user.route';
 
 const IndexRoute = Router();
 
-// IndexRoute.use(authMiddleware2);
 IndexRoute.use('/auth', AuthRoute);
 IndexRoute.use('/health', HealthRoute);
 IndexRoute.use('/user', UserRoute);
+IndexRoute.use(authMiddleware);
+IndexRoute.get('/teste', (_req, res) => res.status(200).send({ message: 'Hello World' }).end());
 
 export { IndexRoute };

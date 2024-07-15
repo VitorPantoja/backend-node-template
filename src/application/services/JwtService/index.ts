@@ -68,8 +68,8 @@ export class JwtService {
 
   async testToken() {
     const payload = {
-      name: "Jimmy",
-      scopes: "customer:read"
+      name: 'Jimmy',
+      scopes: 'customer:read'
     };
     const result = sign(payload, 'minha chave');
     return result;

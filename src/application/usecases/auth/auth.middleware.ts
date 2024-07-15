@@ -4,30 +4,8 @@ import { verify } from 'jsonwebtoken';
 
 import type { PayloadTokenDto } from './auth.dto';
 
+import { ForbiddenError, UnauthorizedError } from '../../../infrastructure/api/rest/utils/http-exceptions';
 import { env } from '../../../infrastructure/config/environment';
-import { HttpException } from '../../../infrastructure/server/middlewares/http-exception';
-
-// export async function authMiddleware2() {
-//   return async (req: Request, next: NextFunction) => {
-//     const { headers } = req;
-//     const token = headers['authorization'];
-//     if (!token) {
-//       return next(new HttpException(403, 'Forbidden'));
-//     }
-//     let payload: PayloadTokenDto | null = null;
-
-//     try {
-//       payload = verify(token, env.APP_SECRET) as PayloadTokenDto;
-//     } catch (error) {
-//       return next(new HttpException(401, 'Invalid token'));
-//     }
-
-//     if (payload) {
-//       req.auth = payload;
-//       return next ? next() : payload;
-//     }
-//   };
-// }
 
 export function requestHeaderToken(req: Request) {
   const { body, headers, query } = req;
@@ -39,21 +17,20 @@ export function requestHeaderToken(req: Request) {
   return token;
 }
 
-export function authMiddleware() {
+export function createAuthMiddleware() {
   return async (req: Request, res: Response, next: NextFunction) => {
-    const { headers } = req;
-    const token = headers['authorization'];
+    const token = requestHeaderToken(req);
     if (!token) {
-      return next(new HttpException(403, 'Forbidden'));
+      return next(new ForbiddenError('Forbidden'));
     }
     let payload: PayloadTokenDto | null = null;
     try {
       payload = verify(token, env.APP_SECRET) as PayloadTokenDto;
     } catch (error) {
-      return next(new HttpException(401, 'Invalid token'));
+      return next(new UnauthorizedError('Invalid token'));
     }
 
-    if (!payload && next) return next(new HttpException(401, 'invalid_token_2'));
+    if (!payload && next) return next(new UnauthorizedError('invalid_token_2'));
 
     req.auth = payload;
     return next ? next() : payload;

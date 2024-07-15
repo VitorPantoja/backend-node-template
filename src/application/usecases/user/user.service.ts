@@ -1,6 +1,6 @@
 import { v4 as uuidV4 } from 'uuid';
 
-import { generateHashPassword, generateHashPassword2, hashPassword } from './user.helper';
+import { generateHashPassword2, hashPassword } from './user.helper';
 
 import { UserDto } from '../../../domain/dto/user.dto';
 import { nonNull } from '../../../domain/helper';
