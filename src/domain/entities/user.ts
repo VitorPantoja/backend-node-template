@@ -9,8 +9,8 @@ export class User {
   @Column({ length: 100 })
   name!: string;
 
-  @Column()
-  age!: number;
+  @Column({ name: 'age', nullable: true, type: 'bigint' })
+  age: number;
 
   @Column({ length: 80, nullable: true })
   email!: string;

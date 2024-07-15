@@ -3,7 +3,7 @@ import type { NextFunction, Request, Response } from 'express';
 import type { AuthSevice } from './auth.service';
 
 import { Catch } from '../../../infrastructure/api/rest/utils/catch-controller.decorator';
-import { HttpException } from '../../../infrastructure/api/rest/utils/http-exceptions';
+import { UnauthorizedError } from '../../../infrastructure/api/rest/utils/http-exceptions';
 
 @Catch()
 export class AuthController {
@@ -13,7 +13,7 @@ export class AuthController {
     const { body } = req;
 
     const response = await this.authService.signIn(body);
-    if (!response) throw new HttpException('Unauthorized', 401);
+    if (!response) throw new UnauthorizedError('Unauthorized');
 
     const { expiration = null, parentId, personaId: role, token = '', user = null } = response;
 

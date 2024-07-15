@@ -58,7 +58,7 @@ export function createErrorMiddleware() {
     }
 
     if (error instanceof HttpException) {
-      result.status = error?.status || 500;
+      result.status = error?.code || 500;
       result.message = error.message || 'Something went wrong HttpException';
     }
 
