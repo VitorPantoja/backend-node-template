@@ -5,7 +5,7 @@
   "main": "./src/index",
   "scripts": {
     "build": "tsc --build",
-    "start": "node build/src/index.js",
+    "start": "node dist/index.js",
     "typescript": "ts-node-dev --quiet --transpile-only --exit-child --ignore-watch node_modules --",
     "dev": "npm run typescript ./src/index",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix"
