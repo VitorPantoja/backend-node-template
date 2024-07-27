@@ -2,7 +2,7 @@ import type { DataSourceService } from '../../infrastructure/datasource';
 import type { HttpServer } from '../../infrastructure/server/server';
 import { Utils } from '../../utils';
 
-export async function startServer(httpServer: HttpServer, dataSource: DataSourceService) {
+export async function startServer(httpServer: HttpServer, dataSource?: DataSourceService) {
   //@ts-ignore
   // const connection = await dataSource.initialize();
   // if (connection.isInitialized) {
