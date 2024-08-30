@@ -10,6 +10,7 @@ type Env = {
   [key in keyof NodeJS.ProcessEnv]: NodeJS.ProcessEnv[key];
 };
 
+// eslint-disable-next-line no-restricted-exports
 export default class Environment {
   private static _instance: Environment;
   private _env: Env | null = null;
@@ -63,9 +64,7 @@ export default class Environment {
 
     for (const environmentRequired of environmentsRequired) {
       if (!environments.find(environment => environment === environmentRequired)) {
-        throw new Error(
-          `Variável de ambiente '${environmentRequired}' não encontrada. Verifique o arquivo '.env.exemple'`,
-        );
+        throw new Error(`Variável de ambiente '${environmentRequired}' não encontrada. Verifique o arquivo '.env.exemple'`);
       }
     }
   }

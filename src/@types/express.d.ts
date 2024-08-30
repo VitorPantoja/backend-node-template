@@ -1,5 +1,4 @@
-import type { PayloadTokenDto } from "../application/usecases/auth/auth.dto";
-
+import type { PayloadTokenDto } from '../application/usecases/auth/auth.dto';
 
 declare global {
   namespace Express {

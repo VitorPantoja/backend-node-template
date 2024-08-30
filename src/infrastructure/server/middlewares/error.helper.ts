@@ -8,7 +8,7 @@ export function isBodyParserError(error: any) {
     'stream.encoding.set',
     'parameters.too.many',
     'charset.unsupported',
-    'entity.too.large',
+    'entity.too.large'
   ];
   return bodyParserCommonErrorsTypes.includes(error?.type);
 }
